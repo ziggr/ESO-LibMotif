@@ -1,0 +1,23 @@
+## Title: LibMotif 6.3.1
+## Version: 6.3.1
+## AddOnVersion: 060301
+## Last Updated: 2021-04-13
+## APIVersion: 100034
+## Description: Provide data about motifs that is not easily available via ESO API.
+## Author: ziggr
+## SavedVariables: LibMotifVars
+## OptionalDependsOn: LibSlashCommander LibDebugLogger
+
+            # LibSlashCommander optional
+            #   by sirinsidiator
+            #   https://www.esoui.com/downloads/info1508-LibSlashCommander.html
+            #   Provides autocompletion and help text for /lm
+            #   subcommands like "scan".
+
+            # LibDebugLogger
+            #   by Sirinsidiator
+            #   https://www.esoui.com/downloads/info2275-LibDebugLogger.html
+            #   Allows error/warn/info/debug logging to saved variables.
+            #   Can be omitted. Only useful for Zig while developing.
+
+LibMotif.lua
