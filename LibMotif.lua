@@ -11,6 +11,40 @@ LibMotif.saved_var_version = 1
 LibMotif.default = {}
 
 
+-- Simple/Crown --------------------------------------------------------------
+-- These do not have 14x purple pages scattered throughout Tamriel.
+-- These are learned all at once, not page-by-page.
+-- Use IsSmithingStyleKnown(motif_id) to see if the current character knows
+-- this stule.
+LibMotif.SIMPLE = {
+    [ITEMSTYLE_RACIAL_BRETON            ] = true
+,   [ITEMSTYLE_RACIAL_REDGUARD          ] = true
+,   [ITEMSTYLE_RACIAL_ORC               ] = true
+,   [ITEMSTYLE_RACIAL_DARK_ELF          ] = true
+,   [ITEMSTYLE_RACIAL_NORD              ] = true
+,   [ITEMSTYLE_RACIAL_ARGONIAN          ] = true
+,   [ITEMSTYLE_RACIAL_HIGH_ELF          ] = true
+,   [ITEMSTYLE_RACIAL_WOOD_ELF          ] = true
+,   [ITEMSTYLE_RACIAL_KHAJIIT           ] = true
+,   [ITEMSTYLE_AREA_ANCIENT_ELF         ] = true
+,   [ITEMSTYLE_AREA_REACH               ] = true
+,   [ITEMSTYLE_ENEMY_PRIMITIVE          ] = true
+,   [ITEMSTYLE_ENEMY_DAEDRIC            ] = true
+,   [ITEMSTYLE_AREA_SOUL_SHRIVEN        ] = true
+,   [ITEMSTYLE_RACIAL_IMPERIAL          ] = true
+,   [ITEMSTYLE_AREA_TSAESCI             ] = true
+,   [ITEMSTYLE_HOLIDAY_FROSTCASTER      ] = true
+,   [ITEMSTYLE_HOLIDAY_GRIM_HARLEQUIN   ] = true
+}
+
+-- Unscannable ---------------------------------------------------------------
+-- Simple "___ Style Master" string matching fails to match these achievements.
+LibMotif.PAGE_ID = {
+    [ 59] = { pages_id  =  1545 } -- Hollowjack     / "Happy Work for Hollowjack"
+,   [ 71] = { pages_id  =  2186 } -- Psijic Order   / "Psijic Style Master"
+,   [ 93] = { pages_id  =  2628 } -- Moongrave Fane / "Moongrave Style Master"
+}
+
 -- Scan ----------------------------------------------------------------------
 
 function LibMotif:ScanMotifs()
@@ -56,6 +90,17 @@ function LibMotif:ScanAchievements()
             achieve_seen_ct = achieve_seen_ct + 1
             expand_range( achievement_id, seen_range )
         end
+    end
+
+                        -- Include these stragglers whose achievement names
+                        -- do not match "___ Style Master" pattern (usually
+                        -- because the "___" portion is shortened somehow).
+    for motif_id, p in pairs(LibMotif.PAGE_ID) do
+        local achievement_id = p.pages_id
+        local motif_name = GetItemStyleName(motif_id)
+        achieve[achievement_id] = motif_name
+        achieve_seen_ct = achieve_seen_ct + 1
+        expand_range( achievement_id, seen_range )
     end
 
     return { ["achieve"] =  achieve
@@ -127,16 +172,14 @@ function LibMotif:Export()
 
         local value = "nil"
         if m.pages_id then
-            value = string.format("{ pages_id  = %6d }"   , m.pages_id )
-        elseif m.is_simple then
-            value = string.format("{ is_simple =   true }"             )
-        elseif m.crown_id then
-            value = string.format("{ crown_id = %6d }"    , m.crown_id )
+            value = string.format("{ pages_id  =  %4d }"   , m.pages_id )
+        elseif self.SIMPLE[motif_id] then
+            value = string.format("{ is_simple =  true }"             )
         end
 
         local comma = to_prefix(motif_id)
         local line = string.format(
-                          "%s   [%3d] = %-22s -- %-40s"
+                          "%s  [%3d] = %-21s -- %-40s"
                         , comma
                         , motif_id
                         , value
