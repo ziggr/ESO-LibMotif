@@ -30,17 +30,82 @@ function LibMotif:ScanMotifs()
            }
 end
 
--- SlashCommand --------------------------------------------------------------
+local function expand_range(i, r)
+    if (r.min == nil) or (i < r.min) then
+        r.min = i
+    end
+    if (r.max == nil) or (r.max < i) then
+        r.max = i
+    end
+    return r
+end
+
+function LibMotif:ScanAchievements()
+    local min_achievement_id = 1000
+    local max_achievement_id = 2000
+
+    local achieve = {}
+    local achieve_seen_ct = 0
+    local seen_range = {}
+    local re = "(.*) Style Master"
+    for achievement_id = min_achievement_id, max_achievement_id do
+        local achievement_name = GetAchievementName(achievement_id)
+        local _, _,motif_name = string.find(achievement_name, re)
+        if motif_name then
+            achieve[achievement_id] = motif_name
+            achieve_seen_ct = achieve_seen_ct + 1
+            expand_range( achievement_id, seen_range )
+        end
+    end
+
+    return { ["achieve"] =  achieve
+           , ["achieve_seen_ct"] = achieve_seen_ct
+           , ["min_seen_id"] = seen_range.min
+           , ["max_seen_id"] = seen_range.max
+           }
+end
+
+function LibMotif:MergeAchievements()
+                        -- Index by visible name
+    local names = {}
+    for motif_id,motif_name in pairs(self.motif) do
+        names[motif_name] = motif_id
+    end
+
+    local unmatched_achievement_ids = {}
+    for achievement_id, motif_name in pairs(self.achieve) do
+        local motif_id = names[motif_name]
+        if motif_id then
+            local m = self.motif[motif_id]
+            m.pages_id = achievement_id
+        else
+            table.insert(unmatched_achievement_ids, achievement_id)
+        end
+    end
+end
 
 function LibMotif.Scan()
     local self = LibMotif
     self.log:Debug("scan")
 
     local r = self:ScanMotifs()
-    self.motif          = r.motif
-    self.motif_seen_ct  = r.motif_seen_ct
-    self.max_motif_id   = r.max_motif_id
+    self.motif           = r.motif
+    self.motif_seen_ct   = r.motif_seen_ct
+    self.max_motif_id    = r.max_motif_id
+
+    r = self:ScanAchievements()
+    self.achieve         = r.achieve
+    self.achieve_seen_ct = r.achieve_seen_ct
+    self.achieve_min_id  = r.min_seen_id
+    self.achieve_max_id  = r.max_seen_id
+
+    self:MergeAchievements()
+
+    self.saved_vars.motif = self.motif
+    self.saved_vars.achieve = self.achieve
 end
+
+-- SlashCommand --------------------------------------------------------------
 
 function LibMotif.SlashCommand(arg1)
     self = LibMotif
@@ -51,6 +116,12 @@ function LibMotif.SlashCommand(arg1)
               "Scan complete. Motifs seen: %d. Highest id: %d"
             , self.motif_seen_ct
             , self.max_motif_id
+            )
+        self.log:Info(
+              "Achievements seen: %d. Range [%d, %d]"
+            , self.achieve_seen_ct
+            , self.achieve_min_id
+            , self.achieve_max_id
             )
     end
 end
