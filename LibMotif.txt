@@ -23,7 +23,7 @@
 
             # Zig-only scanner function that other folks
             # never need to run.
-LibMotif_Scan.lua
+# LibMotif_Scan.lua
 
             # The actual data table calling code cares about.
 LibMotif_Data.lua
