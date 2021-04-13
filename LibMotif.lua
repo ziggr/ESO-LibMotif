@@ -81,8 +81,6 @@ function LibMotif:MergeAchievements()
             self.motif[motif_id]["pages_id"] = achievement_id
         end
     end
-
-    self.saved_vars.x = nil -- names
 end
 
 function LibMotif.Scan()
@@ -102,16 +100,25 @@ function LibMotif.Scan()
 
     self:MergeAchievements()
 
-    self.saved_vars.motif   = self.motif
+    self.saved_vars.motif   = nil -- self.motif
     self.saved_vars.achieve = nil -- self.achieve
 
-    self:Export()
+    local lines = self:Export()
+    self.saved_vars.export = lines
+end
+
+-- Mess with the line prefix so that the block of text in the Saved Variables
+-- file is easily block-selectable for later copy-and-paste into source.
+local function to_prefix(i)
+    if i <= 1 then return "    " end
+    if i <= 9 then return "  , " end
+    if i <= 99 then return " , " end
+    if i <= 999 then return ", " end
 end
 
 -- Generate text that's (almost) suitable as copy-and-paste data.
 function LibMotif:Export()
     local lines = {}
-    local comma = " "
     for motif_id = 1,self.max_motif_id do
         local m = self.motif[motif_id] or {}
 
@@ -127,8 +134,9 @@ function LibMotif:Export()
             value = string.format("{ crown_id = %6d }"    , m.crown_id )
         end
 
+        local comma = to_prefix(motif_id)
         local line = string.format(
-                          "%s   [%3d] = %-22s -- %s"
+                          "%s   [%3d] = %-22s -- %-40s"
                         , comma
                         , motif_id
                         , value
@@ -137,7 +145,7 @@ function LibMotif:Export()
         table.insert(lines, line)
     end
 
-    self.saved_vars.export = lines
+    return lines
 end
 
 -- SlashCommand --------------------------------------------------------------
