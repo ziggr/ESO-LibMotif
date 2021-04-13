@@ -19,6 +19,7 @@ sub dirls($)
 @files = ( 'Makefile' );
 # push @files, dirls('src');
 push @files, 'LibMotif.lua';
+push @files, 'LibMotif_Scan.lua';
 print join("\n", @files) . "\n";
 
 @prev_mtime = ();
