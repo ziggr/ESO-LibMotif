@@ -14,6 +14,8 @@
 
 LibMotif = LibMotif or {}
 
+LibMotif.saved_var_version = 1
+LibMotif.default = {}
 
 -- Simple/Crown --------------------------------------------------------------
 -- These do not have 14x purple pages scattered throughout Tamriel.
@@ -177,14 +179,14 @@ function LibMotif:Export()
 
         local value = "nil"
         if m.pages_id then
-            value = string.format("{ pages_id  =  %4d }"   , m.pages_id )
+            value = string.format("{ achievement_id  =  %4d }"   , m.pages_id )
         elseif self.SIMPLE[motif_id] then
-            value = string.format("{ is_simple =  true }"             )
+            value = string.format("{ is_simple       =  true }"             )
         end
 
         local comma = to_prefix(motif_id)
         local line = string.format(
-                          "%s  [%3d] = %-21s -- %-40s"
+                          "%s  [%3d] = %-27s -- %-40s"
                         , comma
                         , motif_id
                         , value
@@ -233,8 +235,6 @@ function LibMotif.RegisterSlashCommands()
     sub_forget:SetCallback(function() LibMotif.SlashCommand("scan") end)
     sub_forget:SetDescription("Scan for all craftable motifs")
 end
-
-LibMotif.default = {}
 
 -- Log -----------------------------------------------------------------------
 
