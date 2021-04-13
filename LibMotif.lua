@@ -11,13 +11,10 @@ LibMotif.saved_var_version = 1
 LibMotif.default = {}
 
 
+-- Scan ----------------------------------------------------------------------
 
--- SlashCommand --------------------------------------------------------------
-
-function LibMotif.Scan()
-	LibMotif.log:Debug("scan")
+function LibMotif:ScanMotifs()
 	local motif        = {}
-
 	local max_motif_id 	= GetHighestItemStyleId()
 	local motif_seen_ct = 0
 	for motif_id = 1, max_motif_id do
@@ -27,9 +24,22 @@ function LibMotif.Scan()
 			motif_seen_ct   = motif_seen_ct + 1
 		end
 	end
-	self.motif 			= motif
-	self.motif_seen_ct 	= motif_seen_ct
-	self.max_motif_id 	= max_motif_id
+	return { ["motif"        ] = motif
+	       , ["motif_seen_ct"] = motif_seen_ct
+	       , ["max_motif_id" ] = max_motif_id
+	       }
+end
+
+-- SlashCommand --------------------------------------------------------------
+
+function LibMotif.Scan()
+	local self = LibMotif
+	self.log:Debug("scan")
+
+	local r = self:ScanMotifs()
+	self.motif 			= r.motif
+	self.motif_seen_ct 	= r.motif_seen_ct
+	self.max_motif_id 	= r.max_motif_id
 end
 
 function LibMotif.SlashCommand(arg1)
