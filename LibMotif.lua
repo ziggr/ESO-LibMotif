@@ -104,6 +104,40 @@ function LibMotif.Scan()
 
     self.saved_vars.motif   = self.motif
     self.saved_vars.achieve = nil -- self.achieve
+
+    self:Export()
+end
+
+-- Generate text that's (almost) suitable as copy-and-paste data.
+function LibMotif:Export()
+    local lines = {}
+    local comma = " "
+    for motif_id = 1,self.max_motif_id do
+        local m = self.motif[motif_id] or {}
+
+        local pages_id = m.pages_id
+        local name     = m.name or ""
+
+        local value = "nil"
+        if m.pages_id then
+            value = string.format("{ pages_id  = %6d }"   , m.pages_id )
+        elseif m.is_simple then
+            value = string.format("{ is_simple =   true }"             )
+        elseif m.crown_id then
+            value = string.format("{ crown_id = %6d }"    , m.crown_id )
+        end
+
+        local line = string.format(
+                          "%s   [%3d] = %-22s -- %s"
+                        , comma
+                        , motif_id
+                        , value
+                        , name
+                        )
+        table.insert(lines, line)
+    end
+
+    self.saved_vars.export = lines
 end
 
 -- SlashCommand --------------------------------------------------------------
