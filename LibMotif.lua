@@ -42,7 +42,7 @@ end
 
 function LibMotif:ScanAchievements()
     local min_achievement_id = 1000
-    local max_achievement_id = 2000
+    local max_achievement_id = 4000
 
     local achieve = {}
     local achieve_seen_ct = 0
@@ -68,20 +68,21 @@ end
 function LibMotif:MergeAchievements()
                         -- Index by visible name
     local names = {}
-    for motif_id,motif_name in pairs(self.motif) do
-        names[motif_name] = motif_id
+    for motif_id,m in pairs(self.motif) do
+        names[m.name] = { ["motif_id"] = motif_id }
     end
 
-    local unmatched_achievement_ids = {}
     for achievement_id, motif_name in pairs(self.achieve) do
-        local motif_id = names[motif_name]
+        names[motif_name] = names[motif_name] or {}
+        names[motif_name]["pages_id"] = achievement_id
+
+        motif_id = names[motif_name]["motif_id"]
         if motif_id then
-            local m = self.motif[motif_id]
-            m.pages_id = achievement_id
-        else
-            table.insert(unmatched_achievement_ids, achievement_id)
+            self.motif[motif_id]["pages_id"] = achievement_id
         end
     end
+
+    self.saved_vars.x = nil -- names
 end
 
 function LibMotif.Scan()
@@ -101,8 +102,8 @@ function LibMotif.Scan()
 
     self:MergeAchievements()
 
-    self.saved_vars.motif = self.motif
-    self.saved_vars.achieve = self.achieve
+    self.saved_vars.motif   = self.motif
+    self.saved_vars.achieve = nil -- self.achieve
 end
 
 -- SlashCommand --------------------------------------------------------------
