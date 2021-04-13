@@ -15,14 +15,33 @@ LibMotif.default = {}
 -- SlashCommand --------------------------------------------------------------
 
 function LibMotif.Scan()
-	LibMotif.log:Error("hi")
+	LibMotif.log:Debug("scan")
+	local motif        = {}
+
+	local max_motif_id 	= GetHighestItemStyleId()
+	local motif_seen_ct = 0
+	for motif_id = 1, max_motif_id do
+		motif_name = GetItemStyleName(motif_id)
+		if motif_name and motif_name ~= "" then
+			motif[motif_id] = { ["name"] = motif_name }
+			motif_seen_ct   = motif_seen_ct + 1
+		end
+	end
+	self.motif 			= motif
+	self.motif_seen_ct 	= motif_seen_ct
+	self.max_motif_id 	= max_motif_id
 end
 
 function LibMotif.SlashCommand(arg1)
+	self = LibMotif
     if arg1:lower() == "scan" then
-    	d("alpha")
+    	self.log:Info("Scanning...")
         LibMotif.Scan()
-        d("bravo")
+    	self.log:Info(
+    		  "Scan complete. Motifs seen: %d. Highest id: %d"
+    		, self.motif_seen_ct
+    		, self.max_motif_id
+    		)
     end
 end
 
