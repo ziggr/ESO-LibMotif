@@ -3,6 +3,7 @@
 ## AddOnVersion: 060301
 ## Last Updated: 2021-04-13
 ## APIVersion: 100034
+## IsLibrary: true
 ## Description: Provide data about motifs that is not easily available via ESO API.
 ## Author: ziggr
 ## SavedVariables: LibMotifVars
