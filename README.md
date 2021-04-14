@@ -1,6 +1,6 @@
 LibMotif provides add-on authors with a single API call to determine if a character knows a crafting style or not.
 
-Extracted from <a href="">WritWorthy</a>.
+Extracted from <a href="https://www.esoui.com/downloads/info1605-WritWorthy.html">WritWorthy</a>.
 
 Available on [github](https://github.com/ziggr/ESO-LibMotif)
 
