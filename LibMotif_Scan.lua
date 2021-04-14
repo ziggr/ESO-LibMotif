@@ -278,6 +278,7 @@ function LibMotif:Initialize()
                             , self.saved_var_version
                             , nil
                             , self.default
+                            , GetWorldName()  
                             )
         LibMotif.RegisterSlashCommands()
     end
