@@ -44,7 +44,7 @@ LibMotif.DATA = {
 ,   [ 27] = { achievement_id  =  1714 } -- Celestial
 ,   [ 28] = { achievement_id  =  1319 } -- Glass
 ,   [ 29] = { achievement_id  =  1181 } -- Xivkyn
-,   [ 30] = { achievement_id  =  1418 } -- Soul Shriven
+,   [ 30] = { is_simple       =  true } -- Soul Shriven
 ,   [ 31] = { achievement_id  =  1715 } -- Draugr
 ,   [ 32] = nil                         -- Maormer
 ,   [ 33] = { achievement_id  =  1318 } -- Akaviri

@@ -14,6 +14,7 @@
 
 LibMotif = LibMotif or {}
 
+LibMotif.name = "LibMotif"   -- duplicated here from LibMotif.lua solely for RegisterForEvent()
 LibMotif.saved_var_version = 1
 LibMotif.default = {}
 
@@ -23,24 +24,24 @@ LibMotif.default = {}
 -- Use IsSmithingStyleKnown(motif_id) to see if the current character knows
 -- this stule.
 LibMotif.SIMPLE = {
-    [ITEMSTYLE_RACIAL_BRETON            ] = true
-,   [ITEMSTYLE_RACIAL_REDGUARD          ] = true
-,   [ITEMSTYLE_RACIAL_ORC               ] = true
-,   [ITEMSTYLE_RACIAL_DARK_ELF          ] = true
-,   [ITEMSTYLE_RACIAL_NORD              ] = true
-,   [ITEMSTYLE_RACIAL_ARGONIAN          ] = true
-,   [ITEMSTYLE_RACIAL_HIGH_ELF          ] = true
-,   [ITEMSTYLE_RACIAL_WOOD_ELF          ] = true
-,   [ITEMSTYLE_RACIAL_KHAJIIT           ] = true
-,   [ITEMSTYLE_AREA_ANCIENT_ELF         ] = true
-,   [ITEMSTYLE_AREA_REACH               ] = true
-,   [ITEMSTYLE_ENEMY_PRIMITIVE          ] = true
-,   [ITEMSTYLE_ENEMY_DAEDRIC            ] = true
-,   [ITEMSTYLE_AREA_SOUL_SHRIVEN        ] = true
-,   [ITEMSTYLE_RACIAL_IMPERIAL          ] = true
-,   [ITEMSTYLE_AREA_TSAESCI             ] = true
-,   [ITEMSTYLE_HOLIDAY_FROSTCASTER      ] = true
-,   [ITEMSTYLE_HOLIDAY_GRIM_HARLEQUIN   ] = true
+    [ 1] = true -- ITEMSTYLE_RACIAL_BRETON
+,   [ 2] = true -- ITEMSTYLE_RACIAL_REDGUARD
+,   [ 3] = true -- ITEMSTYLE_RACIAL_ORC
+,   [ 4] = true -- ITEMSTYLE_RACIAL_DARK_ELF
+,   [ 5] = true -- ITEMSTYLE_RACIAL_NORD
+,   [ 6] = true -- ITEMSTYLE_RACIAL_ARGONIAN
+,   [ 7] = true -- ITEMSTYLE_RACIAL_HIGH_ELF
+,   [ 8] = true -- ITEMSTYLE_RACIAL_WOOD_ELF
+,   [ 9] = true -- ITEMSTYLE_RACIAL_KHAJIIT
+,   [15] = true -- ITEMSTYLE_AREA_ANCIENT_ELF
+,   [17] = true -- ITEMSTYLE_AREA_REACH
+,   [19] = true -- ITEMSTYLE_ENEMY_PRIMITIVE
+,   [20] = true -- ITEMSTYLE_ENEMY_DAEDRIC
+,   [30] = true -- ITEMSTYLE_AREA_SOUL_SHRIVEN
+,   [34] = true -- ITEMSTYLE_RACIAL_IMPERIAL
+,   [38] = true -- ITEMSTYLE_AREA_TSAESCI
+,   [53] = true -- ITEMSTYLE_HOLIDAY_FROSTCASTER
+,   [58] = true -- ITEMSTYLE_HOLIDAY_GRIM_HARLEQUIN
 }
 
 -- Unscannable ---------------------------------------------------------------
@@ -178,10 +179,10 @@ function LibMotif:Export()
         local name     = m.name or ""
 
         local value = "nil"
-        if m.pages_id then
-            value = string.format("{ achievement_id  =  %4d }"   , m.pages_id )
-        elseif self.SIMPLE[motif_id] then
+        if self.SIMPLE[motif_id] then
             value = string.format("{ is_simple       =  true }"             )
+        elseif m.pages_id then
+            value = string.format("{ achievement_id  =  %4d }"   , m.pages_id )
         end
 
         local comma = to_prefix(motif_id)
@@ -259,7 +260,7 @@ function LibMotif.OnAddOnLoaded(event, addonName)
     if addonName == LibMotif.name then
         if not LibMotif.name then return end
         LibMotif:Initialize()
-        EVENT_MANAGER:UnregisterForEvent(self.name, EVENT_ADD_ON_LOADED)
+        -- EVENT_MANAGER:UnregisterForEvent(self.name, EVENT_ADD_ON_LOADED)
     end
 end
 
