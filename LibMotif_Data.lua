@@ -122,16 +122,21 @@ LibMotif.DATA = {
 ,   [105] = { achievement_id  =  2776 } -- Ancestral Orc
 ,   [106] = { achievement_id  =  2849 } -- Thorn Legion
 ,   [107] = { achievement_id  =  2850 } -- Hazardous Alchemy
-,   [108] = nil                         --
+,   [108] = { achievement_id  =  2903 } -- Ancestral Akaviri
 ,   [109] = nil                         --
 ,   [110] = { achievement_id  =  2905 } -- Ancestral Reach
 ,   [111] = { achievement_id  =  2926 } -- Nighthollow
 ,   [112] = { achievement_id  =  2938 } -- Arkthzand Armory
 ,   [113] = { achievement_id  =  2998 } -- Wayward Guardian
 ,   [114] = nil                         --
-,   [115] = nil                         --
-,   [116] = nil                         -- True-Sworn
-,   [117] = nil                         -- Waking Flame
+,   [115] = nil                         -- Deadlands Gladiator
+,   [116] = { achievement_id  =  2984 } -- True-Sworn
+,   [117] = { achievement_id  =  2991 } -- Waking Flame
+,   [118] = nil                         -- Dremora Kynreeve
+,   [119] = nil                         --
+,   [120] = nil                         -- Black Fin Legion
+,   [121] = { achievement_id  =  3001 } -- Ivory Brigade
+,   [122] = nil                         -- Sul-Xan
 }
 
 -- What to pass as page_index for
