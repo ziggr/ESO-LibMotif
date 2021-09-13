@@ -134,9 +134,11 @@ LibMotif.DATA = {
 ,   [117] = { achievement_id  =  2991 } -- Waking Flame
 ,   [118] = nil                         -- Dremora Kynreeve
 ,   [119] = nil                         --
-,   [120] = nil                         -- Black Fin Legion
+,   [120] = { achievement_id  =  3000 } -- Black Fin Legion
 ,   [121] = { achievement_id  =  3001 } -- Ivory Brigade
-,   [122] = nil                         -- Sul-Xan
+,   [122] = { achievement_id  =  3002 } -- Sul-Xan
+,   [123] = nil                         -- Crimson Oath
+,   [124] = nil                         -- Silver Rose
 }
 
 -- What to pass as page_index for
