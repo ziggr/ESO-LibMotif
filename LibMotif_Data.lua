@@ -128,17 +128,19 @@ LibMotif.DATA = {
 ,   [111] = { achievement_id  =  2926 } -- Nighthollow
 ,   [112] = { achievement_id  =  2938 } -- Arkthzand Armory
 ,   [113] = { achievement_id  =  2998 } -- Wayward Guardian
-,   [114] = nil                         --
+,   [114] = { achievement_id  =  2959 } -- House Hexos
 ,   [115] = nil                         -- Deadlands Gladiator
 ,   [116] = { achievement_id  =  2984 } -- True-Sworn
 ,   [117] = { achievement_id  =  2991 } -- Waking Flame
 ,   [118] = nil                         -- Dremora Kynreeve
-,   [119] = nil                         --
+,   [119] = { achievement_id  =  2999 } -- Ancient Daedric
 ,   [120] = { achievement_id  =  3000 } -- Black Fin Legion
 ,   [121] = { achievement_id  =  3001 } -- Ivory Brigade
 ,   [122] = { achievement_id  =  3002 } -- Sul-Xan
-,   [123] = nil                         -- Crimson Oath
-,   [124] = nil                         -- Silver Rose
+,   [123] = { achievement_id  =  3094 } -- Crimson Oath
+,   [124] = { achievement_id  =  3097 } -- Silver Rose
+,   [125] = nil                         -- Annihilarch's Chosen
+,   [126] = nil                         -- Fargrave Guardian
 }
 
 -- What to pass as page_index for
