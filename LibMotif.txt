@@ -1,8 +1,8 @@
-## Title: LibMotif 7.1.1
-## Version: 7.1.1
-## AddOnVersion: 070101
-## Last Updated: 2021-09-13
-## APIVersion: 101031
+## Title: LibMotif 7.2.1
+## Version: 7.2.1
+## AddOnVersion: 070201
+## Last Updated: 2021-09-23
+## APIVersion: 101031 101032
 ## IsLibrary: true
 ## Description: Provide data about motifs that is not easily available via ESO API.
 ## Author: ziggr
