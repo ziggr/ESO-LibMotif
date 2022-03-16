@@ -6,8 +6,6 @@
 ## IsLibrary: true
 ## Description: Provide data about motifs that is not easily available via ESO API.
 ## Author: ziggr
-## SavedVariables: LibMotifVars
-## OptionalDependsOn: LibSlashCommander LibDebugLogger
 ## DependsOn: LibCharacterKnowledge
 
             # LibSlashCommander optional

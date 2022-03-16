@@ -21,7 +21,6 @@ sub dirls($)
 push @files, 'LibMotif.lua';
 push @files, 'LibMotif.txt';
 push @files, 'LibMotif_Data.lua';
-push @files, 'LibMotif_Scan.lua';
 print join("\n", @files) . "\n";
 
 @prev_mtime = ();
