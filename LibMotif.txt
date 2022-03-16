@@ -8,6 +8,7 @@
 ## Author: ziggr
 ## SavedVariables: LibMotifVars
 ## OptionalDependsOn: LibSlashCommander LibDebugLogger
+## DependsOn: LibCharacterKnowledge
 
             # LibSlashCommander optional
             #   by sirinsidiator
@@ -21,6 +22,12 @@
             #   Allows error/warn/info/debug logging to saved variables.
             #   Can be omitted. Only useful for Zig while developing.
 
+            # LibCharacterKnowledge
+            #   by 65536
+            #   https://www.esoui.com/downloads/info3317-LibCharacterKnowledge.html
+            #   A newer library for checking character knowledge that
+            #   properly reads character-specific knowledge via lorebooks
+            #   instead of achievements, which are now account-wide.
 
             # Zig-only scanner function that other folks
             # never need to run.

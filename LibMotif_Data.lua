@@ -146,18 +146,36 @@ LibMotif.DATA = {
 -- What to pass as page_index for
 -- GetAchievementCriterion(achievement_id, page_index)
 LibMotif.MOTIF_PAGE = {
-    AXES       =  1
-,   BELTS      =  2
-,   BOOTS      =  3
-,   BOWS       =  4
-,   CHESTS     =  5
-,   DAGGERS    =  6
-,   GLOVES     =  7
-,   HELMETS    =  8
-,   LEGS       =  9
-,   MACES      = 10
-,   SHIELDS    = 11
-,   SHOULDERS  = 12
-,   STAVES     = 13
-,   SWORDS     = 14
+    AXES       =  1     -- ITEM_STYLE_CHAPTER_AXES      = 10
+,   BELTS      =  2     -- ITEM_STYLE_CHAPTER_BELTS     =  6
+,   BOOTS      =  3     -- ITEM_STYLE_CHAPTER_BOOTS     =  3
+,   BOWS       =  4     -- ITEM_STYLE_CHAPTER_BOWS      = 14
+,   CHESTS     =  5     -- ITEM_STYLE_CHAPTER_CHESTS    =  5
+,   DAGGERS    =  6     -- ITEM_STYLE_CHAPTER_DAGGERS   = 11
+,   GLOVES     =  7     -- ITEM_STYLE_CHAPTER_GLOVES    =  2
+,   HELMETS    =  8     -- ITEM_STYLE_CHAPTER_HELMETS   =  1
+,   LEGS       =  9     -- ITEM_STYLE_CHAPTER_LEGS      =  4
+,   MACES      = 10     -- ITEM_STYLE_CHAPTER_MACES     =  9
+,   SHIELDS    = 11     -- ITEM_STYLE_CHAPTER_SHIELDS   = 13
+,   SHOULDERS  = 12     -- ITEM_STYLE_CHAPTER_SHOULDERS =  7
+,   STAVES     = 13     -- ITEM_STYLE_CHAPTER_STAVES    = 12
+,   SWORDS     = 14     -- ITEM_STYLE_CHAPTER_SWORDS    =  8
+}
+
+-- Convert from LibMotif to LibCharacterKnowledge page indices.
+LibMotif.MOTIF_PAGE_TO_CHAPTER = {
+    [LibMotif.MOTIF_PAGE.AXES       ] = ITEM_STYLE_CHAPTER_AXES      -- 10
+,   [LibMotif.MOTIF_PAGE.BELTS      ] = ITEM_STYLE_CHAPTER_BELTS     --  6
+,   [LibMotif.MOTIF_PAGE.BOOTS      ] = ITEM_STYLE_CHAPTER_BOOTS     --  3
+,   [LibMotif.MOTIF_PAGE.BOWS       ] = ITEM_STYLE_CHAPTER_BOWS      -- 14
+,   [LibMotif.MOTIF_PAGE.CHESTS     ] = ITEM_STYLE_CHAPTER_CHESTS    --  5
+,   [LibMotif.MOTIF_PAGE.DAGGERS    ] = ITEM_STYLE_CHAPTER_DAGGERS   -- 11
+,   [LibMotif.MOTIF_PAGE.GLOVES     ] = ITEM_STYLE_CHAPTER_GLOVES    --  2
+,   [LibMotif.MOTIF_PAGE.HELMETS    ] = ITEM_STYLE_CHAPTER_HELMETS   --  1
+,   [LibMotif.MOTIF_PAGE.LEGS       ] = ITEM_STYLE_CHAPTER_LEGS      --  4
+,   [LibMotif.MOTIF_PAGE.MACES      ] = ITEM_STYLE_CHAPTER_MACES     --  9
+,   [LibMotif.MOTIF_PAGE.SHIELDS    ] = ITEM_STYLE_CHAPTER_SHIELDS   -- 13
+,   [LibMotif.MOTIF_PAGE.SHOULDERS  ] = ITEM_STYLE_CHAPTER_SHOULDERS --  7
+,   [LibMotif.MOTIF_PAGE.STAVES     ] = ITEM_STYLE_CHAPTER_STAVES    -- 12
+,   [LibMotif.MOTIF_PAGE.SWORDS     ] = ITEM_STYLE_CHAPTER_SWORDS    --  8
 }
