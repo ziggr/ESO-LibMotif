@@ -1,24 +1,12 @@
-## Title: LibMotif 7.2.1
-## Version: 7.2.1
-## AddOnVersion: 070201
-## Last Updated: 2021-09-23
-## APIVersion: 101031 101032
+## Title: LibMotif 7.3.1
+## Version: 7.3.1
+## AddOnVersion: 070301
+## Last Updated: 2022-03-15
+## APIVersion: 101033
 ## IsLibrary: true
 ## Description: Provide data about motifs that is not easily available via ESO API.
 ## Author: ziggr
 ## DependsOn: LibCharacterKnowledge
-
-            # LibSlashCommander optional
-            #   by sirinsidiator
-            #   https://www.esoui.com/downloads/info1508-LibSlashCommander.html
-            #   Provides autocompletion and help text for /lm
-            #   subcommands like "scan".
-
-            # LibDebugLogger
-            #   by Sirinsidiator
-            #   https://www.esoui.com/downloads/info2275-LibDebugLogger.html
-            #   Allows error/warn/info/debug logging to saved variables.
-            #   Can be omitted. Only useful for Zig while developing.
 
             # LibCharacterKnowledge
             #   by 65536
@@ -27,11 +15,9 @@
             #   properly reads character-specific knowledge via lorebooks
             #   instead of achievements, which are now account-wide.
 
-            # Zig-only scanner function that other folks
-            # never need to run.
-# LibMotif_Scan.lua
-
             # The actual data table calling code cares about.
+            # Leaving this file in case add-ons still use its
+            # constants.
 LibMotif_Data.lua
 
 
